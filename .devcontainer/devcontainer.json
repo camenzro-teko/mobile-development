@@ -1,0 +1,26 @@
+{
+  "name": "Mobile Development – React Native & Expo",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/Beispiele/mobile-development-examples",
+
+  "postCreateCommand": "npm ci",
+  "waitFor": "postCreateCommand",
+
+  "forwardPorts": [8082],
+  "portsAttributes": {
+    "8082": {
+      "label": "Expo Web",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "git.openRepositoryInParentFolders": "always"
+      }
+    }
+  }
+}
