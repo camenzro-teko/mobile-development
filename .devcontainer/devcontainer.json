@@ -11,7 +11,8 @@
   "portsAttributes": {
     "8081": {
       "label": "Expo Metro",
-      "onAutoForward": "silent"
+      "onAutoForward": "silent",
+      "visibility": "public"
     },
     "8082": {
       "label": "Expo Web",

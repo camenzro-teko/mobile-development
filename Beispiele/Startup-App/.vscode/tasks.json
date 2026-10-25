@@ -11,7 +11,6 @@
       "isBackground": true,
       "problemMatcher": [],
       "runOptions": {
-        "runOn": "folderOpen",
         "instanceLimit": 1
       },
       "presentation": {

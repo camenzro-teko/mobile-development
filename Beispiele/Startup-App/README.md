@@ -1,6 +1,6 @@
 # Startup-App
 
-Unterricht: Codespace öffnen, QR-Code scannen. Die App startet von selbst.
+Unterricht: Codespace öffnen, dann `npm start` oder Task **Startup-App starten**.
 Anleitung: [README im Repo-Root](../../README.md).
 
 ---

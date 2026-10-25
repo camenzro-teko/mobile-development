@@ -23,7 +23,7 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
-    "start": "expo start --go --tunnel",
+    "start": "node ../../scripts/start-expo.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
