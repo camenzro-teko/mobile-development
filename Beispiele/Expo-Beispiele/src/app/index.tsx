@@ -11,7 +11,6 @@ const examples: { href: Href; title: string; folder: string }[] = [
   { href: '/schleifen', title: 'Schleifen', folder: 'Kontrollstrukturen' },
   { href: '/funktionen', title: 'Funktionen', folder: 'Funktionen' },
   { href: '/objekte-array', title: 'Objekte und Arrays', folder: 'Objekte-Arrays' },
-  { href: '/javascript-dialog', title: 'Dialoge', folder: 'Dialoge' },
   { href: '/formular-validierung-span', title: 'Formular-Validierung', folder: 'Formular-Validierung-Span' },
   { href: '/javascript-debug', title: 'Debugging', folder: 'Debugging' },
   { href: '/javascript-inline', title: 'JavaScript inline', folder: 'Javascript_Einbinden' },
@@ -29,7 +28,7 @@ export default function HomeScreen() {
       contentContainerStyle={styles.content}>
       <Text style={{ color: theme.secondaryLabel, fontSize: 16, lineHeight: 22 }}>
         Dieselben JavaScript-Themen wie im Web-Ordner, hier mit React Native: Werte auf dem
-        Bildschirm, Eingaben und Alert statt console.log und Browser-DOM.
+        Bildschirm und Eingaben statt console.log und Browser-DOM.
       </Text>
       {examples.map((example) => (
         <Link key={example.href.toString()} href={example.href} asChild>
