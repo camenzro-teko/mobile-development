@@ -1,0 +1,9 @@
+{
+  "name": "mobile-development",
+  "private": true,
+  "scripts": {
+    "start": "npm start --prefix Beispiele/Startup-App",
+    "start:startup": "npm start --prefix Beispiele/Startup-App",
+    "start:beispiele": "npm start --prefix Beispiele/Expo-Beispiele"
+  }
+}

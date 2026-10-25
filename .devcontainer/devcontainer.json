@@ -2,21 +2,34 @@
   "name": "Mobile Development – React Native & Expo",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
 
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/Beispiele/mobile-development-examples",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-  "postCreateCommand": "npm ci",
+  "postCreateCommand": "npm ci --prefix Beispiele/Startup-App && npm ci --prefix Beispiele/Expo-Beispiele",
   "waitFor": "postCreateCommand",
 
-  "forwardPorts": [8082],
+  "forwardPorts": [8081, 8082, 19000, 19006],
   "portsAttributes": {
+    "8081": {
+      "label": "Expo Metro",
+      "onAutoForward": "silent"
+    },
     "8082": {
       "label": "Expo Web",
       "onAutoForward": "notify"
+    },
+    "19000": {
+      "label": "Expo DevTools",
+      "onAutoForward": "silent"
+    },
+    "19006": {
+      "label": "Expo Web (alt)",
+      "onAutoForward": "silent"
     }
   },
 
   "customizations": {
     "vscode": {
+      "extensions": ["expo.vscode-expo-tools"],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
         "git.openRepositoryInParentFolders": "always"

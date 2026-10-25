@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Expo starten",
+      "label": "Startup-App starten",
       "type": "shell",
       "command": "npm start",
       "options": {
