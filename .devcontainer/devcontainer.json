@@ -2,7 +2,7 @@
   "name": "Mobile Development – React Native & Expo",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
 
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/Beispiele/mobile-development-examples",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   "postCreateCommand": "npm ci",
   "waitFor": "postCreateCommand",
