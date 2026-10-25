@@ -11,6 +11,7 @@ const examples: { href: Href; title: string; folder: string }[] = [
   { href: '/schleifen', title: 'Schleifen', folder: 'Kontrollstrukturen' },
   { href: '/funktionen', title: 'Funktionen', folder: 'Funktionen' },
   { href: '/objekte-array', title: 'Objekte und Arrays', folder: 'Objekte-Arrays' },
+  { href: '/javascript-dialog', title: 'Dialoge', folder: 'Dialoge' },
   { href: '/formular-validierung-span', title: 'Formular-Validierung', folder: 'Formular-Validierung-Span' },
   { href: '/javascript-debug', title: 'Debugging', folder: 'Debugging' },
   { href: '/javascript-inline', title: 'JavaScript inline', folder: 'Javascript_Einbinden' },

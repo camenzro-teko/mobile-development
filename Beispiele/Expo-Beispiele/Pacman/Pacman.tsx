@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Stack } from 'expo-router/stack';
 
 import { ExampleButton } from '@/components/example-button';
@@ -106,8 +106,8 @@ function createGhosts(): Ghost[] {
 
 export default function Pacman() {
   const theme = useTheme();
-  const { width } = useWindowDimensions();
-  const cellSize = Math.max(8, Math.floor((width - Spacing.four * 2) / WIDTH));
+  const [boardSize, setBoardSize] = useState(0);
+  const cellSize = boardSize > 0 ? boardSize / WIDTH : 8;
   const [pacman, setPacman] = useState(PACMAN_START);
   const [score, setScore] = useState(0);
   const [dots, setDots] = useState(createDots);
@@ -235,69 +235,126 @@ export default function Pacman() {
   return (
     <>
       <Stack.Screen options={{ title: 'Pacman' }} />
-      <ScrollView
-        style={{ flex: 1, backgroundColor: theme.systemBackground }}
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={styles.content}>
-        <Text selectable style={{ color: theme.secondaryLabel, fontSize: 16, lineHeight: 22 }}>
-          Dasselbe Labyrinth und dieselbe Logik wie im Web-Pacman. Steuere Pacman mit den Tasten.
-        </Text>
-        <Text selectable style={{ color: theme.secondaryLabel, fontSize: 14, lineHeight: 20 }}>
-          Im Browser sind Felder divs mit CSS-Klassen. Hier ist jedes Feld ein View, Position und
-          Punkte liegen in React State statt im DOM.
-        </Text>
-        <ResultRow label="Score" value={String(score)} />
-        <View style={[styles.grid, { width: cellSize * WIDTH, height: cellSize * WIDTH }]}>
-          {cells.map((index) => {
-            const ghost = ghosts.find((item) => item.index === index);
-            const isPacman = pacman === index;
-            const backgroundColor = isPacman
-              ? '#ffe600'
-              : ghost
-                ? scared
-                  ? '#7fffd4'
-                  : ghost.color
-                : isWall(index)
-                  ? '#008000'
-                  : pellets.has(index)
-                    ? '#0000ff'
-                    : '#000000';
-            return (
-              <View key={index} style={{ width: cellSize, height: cellSize, backgroundColor, justifyContent: 'center', alignItems: 'center' }}>
-                {!isPacman && !ghost && dots.has(index) ? (
-                  <View style={{ width: cellSize / 4, height: cellSize / 4, backgroundColor: '#00aa00', borderRadius: cellSize }} />
-                ) : null}
-              </View>
-            );
-          })}
+      <View style={{ flex: 1, backgroundColor: theme.systemBackground }}>
+        <View style={styles.header}>
+          <Text selectable style={{ color: theme.secondaryLabel, fontSize: 16, lineHeight: 22 }}>
+            Steuere Pacman mit den Tasten unten.
+          </Text>
+          <ResultRow label="Score" value={String(score)} />
+        </View>
+        <View
+          style={styles.boardArea}
+          onLayout={(event) => {
+            const { width, height } = event.nativeEvent.layout;
+            const next = Math.floor(Math.min(width, height) / WIDTH) * WIDTH;
+            if (next !== boardSize) {
+              setBoardSize(next);
+            }
+          }}>
+          <View style={[styles.grid, { width: cellSize * WIDTH, height: cellSize * WIDTH }]}>
+            {cells.map((index) => {
+              const ghost = ghosts.find((item) => item.index === index);
+              const isPacman = pacman === index;
+              const backgroundColor = isPacman
+                ? '#ffe600'
+                : ghost
+                  ? scared
+                    ? '#7fffd4'
+                    : ghost.color
+                  : isWall(index)
+                    ? '#008000'
+                    : pellets.has(index)
+                      ? '#0000ff'
+                      : '#000000';
+              return (
+                <View
+                  key={index}
+                  style={{
+                    width: cellSize,
+                    height: cellSize,
+                    backgroundColor,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  {!isPacman && !ghost && dots.has(index) ? (
+                    <View
+                      style={{
+                        width: cellSize / 4,
+                        height: cellSize / 4,
+                        backgroundColor: '#00aa00',
+                        borderRadius: cellSize,
+                      }}
+                    />
+                  ) : null}
+                </View>
+              );
+            })}
+          </View>
         </View>
         <View style={styles.controls}>
-          <ExampleButton label="Hoch" onPress={() => move('up')} variant="outlined" />
           <View style={styles.row}>
-            <View style={styles.half}>
-              <ExampleButton label="Links" onPress={() => move('left')} variant="outlined" />
-            </View>
-            <View style={styles.half}>
-              <ExampleButton label="Rechts" onPress={() => move('right')} variant="outlined" />
-            </View>
+            <View style={styles.spacer} />
+            <Pressable
+              onPress={() => move('up')}
+              style={({ pressed }) => [
+                styles.key,
+                { backgroundColor: theme.secondarySystemBackground, opacity: pressed ? 0.7 : 1 },
+              ]}>
+              <Text style={[styles.keyLabel, { color: theme.label }]}>↑ Hoch</Text>
+            </Pressable>
+            <View style={styles.spacer} />
           </View>
-          <ExampleButton label="Runter" onPress={() => move('down')} variant="outlined" />
+          <View style={styles.row}>
+            <Pressable
+              onPress={() => move('left')}
+              style={({ pressed }) => [
+                styles.key,
+                { backgroundColor: theme.secondarySystemBackground, opacity: pressed ? 0.7 : 1 },
+              ]}>
+              <Text style={[styles.keyLabel, { color: theme.label }]}>← Links</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => move('right')}
+              style={({ pressed }) => [
+                styles.key,
+                { backgroundColor: theme.secondarySystemBackground, opacity: pressed ? 0.7 : 1 },
+              ]}>
+              <Text style={[styles.keyLabel, { color: theme.label }]}>→ Rechts</Text>
+            </Pressable>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.spacer} />
+            <Pressable
+              onPress={() => move('down')}
+              style={({ pressed }) => [
+                styles.key,
+                { backgroundColor: theme.secondarySystemBackground, opacity: pressed ? 0.7 : 1 },
+              ]}>
+              <Text style={[styles.keyLabel, { color: theme.label }]}>↓ Runter</Text>
+            </Pressable>
+            <View style={styles.spacer} />
+          </View>
+          {status !== 'playing' ? <ExampleButton label="Neu starten" onPress={resetGame} /> : null}
+          <Pressable onPress={resetGame} style={({ pressed }) => pressed && styles.pressed}>
+            <Text style={{ color: theme.secondaryLabel, textAlign: 'center' }}>Spiel zurücksetzen</Text>
+          </Pressable>
         </View>
-        {status !== 'playing' ? <ExampleButton label="Neu starten" onPress={resetGame} /> : null}
-        <Pressable onPress={resetGame} style={({ pressed }) => pressed && styles.pressed}>
-          <Text style={{ color: theme.secondaryLabel, textAlign: 'center' }}>Spiel zurücksetzen</Text>
-        </Pressable>
-      </ScrollView>
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  content: {
-    padding: Spacing.four,
-    gap: Spacing.three,
-    paddingBottom: Spacing.five,
+  header: {
+    paddingHorizontal: Spacing.four,
+    paddingTop: Spacing.three,
+    gap: Spacing.two,
+  },
+  boardArea: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: Spacing.three,
   },
   grid: {
     flexDirection: 'row',
@@ -306,14 +363,28 @@ const styles = StyleSheet.create({
   },
   controls: {
     width: '100%',
+    paddingHorizontal: Spacing.four,
+    paddingBottom: Spacing.five,
     gap: Spacing.two,
   },
   row: {
     flexDirection: 'row',
     gap: Spacing.two,
   },
-  half: {
+  spacer: {
     flex: 1,
+  },
+  key: {
+    flex: 1,
+    minHeight: 56,
+    borderRadius: Spacing.three,
+    borderCurve: 'continuous',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  keyLabel: {
+    fontSize: 18,
+    fontWeight: '600',
   },
   pressed: {
     opacity: 0.7,
