@@ -97,6 +97,25 @@
       }
     },
     {
+      "label": "Fotos starten",
+      "type": "shell",
+      "command": "npm start",
+      "options": {
+        "cwd": "${workspaceFolder}/Beispiele/Fotos/MyJournal"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
       "label": "JavaScript-Lösung starten",
       "type": "shell",
       "command": "npm start",

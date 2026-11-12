@@ -46,6 +46,8 @@ Beispiele/
   Styling/
     MyJournal/                 gelöstes Tagebuch mit dem Styling aus Kapitel 5
     Layout/                    Beispiele 5-1 bis 5-5
+  Fotos/
+    MyJournal/                 Styling-Lösung plus Foto und Kamera aus Kapitel 6
 Lösungen/
   JavaScript/                  Lösungen zu Javascript/Lösungen
   UI-Komponenten/              gelöste Aufgaben zum Tagebuch
@@ -59,7 +61,9 @@ Javascript/
 gelösten Aufgaben und ohne Gestaltung. `Styling/MyJournal` ist die gelöste
 App aus `Lösungen/UI-Komponenten` mit den Styles aus Kapitel 5, Beispiele
 5-6 bis 5-14. `Styling/Layout` sind die Beispiele 5-1 bis 5-5 mit Rechtecken
-und Flexbox. `Lösungen/Styling` ist dieselbe App mit klarerer Hierarchie,
+und Flexbox. `Fotos/MyJournal` nimmt `Lösungen/Styling` als Vorlage und ergänzt
+sie um die Beispiele aus Kapitel 6: Uhrzeit, mehrzeiliger Text und Foto per Kamera.
+`Lösungen/Styling` ist dieselbe App mit klarerer Hierarchie,
 gruppierter Eingabe, Abständen, lesbarem Eintragstext und umbrechenden Zeilen.
 
 ## Erste Änderung
@@ -81,13 +85,14 @@ npm run start:javascript          # Beispiele/JavaScript
 npm run start:ui                  # UI-Komponenten/MyJournal
 npm run start:myjournal           # Styling/MyJournal
 npm run start:layout              # Styling/Layout, Beispiele 5-1 bis 5-5
+npm run start:fotos               # Fotos/MyJournal, Kapitel 6
 npm run start:javascript-loesung  # Lösungen/JavaScript
 npm run start:ui-loesung          # Lösungen/UI-Komponenten
 npm run start:styling-loesung     # Lösungen/Styling
 ```
 
 Die Tasks heissen **JavaScript starten**, **UI-Komponenten starten**,
-**Styling MyJournal starten**, **Layout starten**,
+**Styling MyJournal starten**, **Layout starten**, **Fotos starten**,
 **JavaScript-Lösung starten**, **UI-Komponenten-Lösung starten** und
 **Styling-Lösung starten**.
 

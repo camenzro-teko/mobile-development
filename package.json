@@ -8,6 +8,7 @@
     "start:ui": "npm start --prefix Beispiele/UI-Komponenten/MyJournal",
     "start:myjournal": "npm start --prefix Beispiele/Styling/MyJournal",
     "start:layout": "npm start --prefix Beispiele/Styling/Layout",
+    "start:fotos": "npm start --prefix Beispiele/Fotos/MyJournal",
     "start:javascript-loesung": "npm start --prefix Lösungen/JavaScript",
     "start:ui-loesung": "npm start --prefix Lösungen/UI-Komponenten",
     "start:styling-loesung": "npm start --prefix Lösungen/Styling"

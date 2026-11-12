@@ -4,7 +4,7 @@
 
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-  "postCreateCommand": "npm ci --prefix Beispiele/Startup-App && npm ci --prefix Beispiele/JavaScript && npm ci --prefix Beispiele/UI-Komponenten/MyJournal && npm ci --prefix Beispiele/Styling/MyJournal && npm ci --prefix Beispiele/Styling/Layout && npm ci --prefix Lösungen/JavaScript && npm ci --prefix Lösungen/UI-Komponenten && npm ci --prefix Lösungen/Styling",
+  "postCreateCommand": "npm ci --prefix Beispiele/Startup-App && npm ci --prefix Beispiele/JavaScript && npm ci --prefix Beispiele/UI-Komponenten/MyJournal && npm ci --prefix Beispiele/Styling/MyJournal && npm ci --prefix Beispiele/Styling/Layout && npm ci --prefix Beispiele/Fotos/MyJournal && npm ci --prefix Lösungen/JavaScript && npm ci --prefix Lösungen/UI-Komponenten && npm ci --prefix Lösungen/Styling",
   "waitFor": "postCreateCommand",
 
   "forwardPorts": [8081, 8082, 19000, 19006],
